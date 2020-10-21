@@ -48,7 +48,7 @@ if cloud_option == "gcp" or cloud_option == "google":
     if args.bucket is not None:
         print("copying files into bucket " + str(args.bucket))
         try:
-            os.system("gsutils cp " + path + "/*.* " + bucket_path)
+            os.system("gsutil cp " + path + "/*.* " + bucket_path)
             print("file copied")
         except Exception as e:
             print(e)
