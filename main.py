@@ -47,8 +47,9 @@ bucket_path = "sg://" + str(args.bucket).lower()
 
 if cloud_option is "gcp" or cloud_option is "google":
     print("copying files into bucket " + args.bucket)
+
     try:
-        os.sys("gsutils cp " + path + "/*.* " + bucket_path)
+        os.system("gsutils cp " + path + "/*.* " + bucket_path)
         print("file copied")
     except Exception as e:
         print(e)
