@@ -32,7 +32,7 @@ else:
 
 now = datetime.now()
 current_time = current_time = now.strftime("%d_%m_%Y")
-filename = "canada_covid_provincial_data_" + current_time
+filename = "canada_covid_provincial_data_" + current_time + ".csv"
 save_path = path + "/" + filename
 df.to_csv(save_path)
 
@@ -46,4 +46,9 @@ cloud_option = str(args.cloud).lower()
 bucket_path = "sg://" + str(args.bucket).lower()
 
 if cloud_option is "gcp" or cloud_option is "google":
-    os.sys("gsutils cp " + path + "/*.* " + bucket_path)
+    print("copying files into bucket " + args.bucket)
+    try:
+        os.sys("gsutils cp " + path + "/*.* " + bucket_path)
+        print("file copied")
+    except Exception as e:
+        print(e)
