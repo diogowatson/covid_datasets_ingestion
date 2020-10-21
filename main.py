@@ -6,7 +6,6 @@ from extract_api import extract_api
 from datetime import datetime
 from argument_parser import create_argument_parser
 
-
 parser = create_argument_parser()
 args = parser.parse_args()
 
@@ -44,12 +43,14 @@ if args.bucket is None and args.cloud is None:
 
 cloud_option = str(args.cloud).lower()
 bucket_path = "sg://" + str(args.bucket).lower()
-
-if cloud_option is "gcp" or cloud_option is "google":
-    print("copying files into bucket " + args.bucket)
-
-    try:
-        os.system("gsutils cp " + path + "/*.* " + bucket_path)
-        print("file copied")
-    except Exception as e:
-        print(e)
+print(cloud_option)
+if cloud_option == "gcp" or cloud_option == "google":
+    if args.bucket is not None:
+        print("copying files into bucket " + str(args.bucket))
+        try:
+            os.system("gsutils cp " + path + "/*.* " + bucket_path)
+            print("file copied")
+        except Exception as e:
+            print(e)
+    else:
+        print("Bucket path can't be empty")
