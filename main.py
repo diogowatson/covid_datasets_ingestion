@@ -42,7 +42,7 @@ if args.bucket is None and args.cloud is None:
     sys.exit()
 
 cloud_option = str(args.cloud).lower()
-bucket_path = "sg://" + str(args.bucket).lower()
+bucket_path = "gs://" + str(args.bucket).lower()
 print(cloud_option)
 if cloud_option == "gcp" or cloud_option == "google":
     if args.bucket is not None:
